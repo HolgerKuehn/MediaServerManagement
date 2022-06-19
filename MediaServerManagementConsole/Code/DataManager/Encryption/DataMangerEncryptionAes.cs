@@ -1,4 +1,11 @@
-﻿namespace MediaServerManagement
+﻿/// <copyright file="DataMangerEncryptionAes.cs" company="dachs.blog">
+/// Copyright (c) 2014 - 2022 Holger Kühn. All rights reserved.
+/// </copyright>
+
+/// <summary>
+/// Namespace used for all MediaServerManangement components
+/// </summary>
+namespace MediaServerManagement
 {
     using System.Security.Cryptography;
     using System.Security.Principal;
@@ -8,7 +15,7 @@
     /// Extension class for encryption based on an algorithm described in https://stackoverflow.com/questions/10168240/encrypting-decrypting-a-string-in-c-sharp
     /// Changed the fixed derivationIterations to a random short-number and algorithm to AesCng.
     /// </summary>
-    public static class BaseEncryptionAes
+    public static class DataMangerEncryptionAes
     {
         public static string Encrypt(this string plainText)
         {
