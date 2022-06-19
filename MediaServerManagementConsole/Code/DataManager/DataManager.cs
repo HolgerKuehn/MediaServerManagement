@@ -60,10 +60,10 @@ namespace MediaServerManagement
             this.primaryStorageEngine = StorageEngine.Text;
 
             plainText = "abc";
-            cypherText = plainText.Encrypt("blub");
+            cypherText = plainText.Encrypt();
             try
             {
-                plainText = cypherText.Decrypt("bl");
+                plainText = cypherText.Decrypt();
             }
             catch {
                 plainText = "";
