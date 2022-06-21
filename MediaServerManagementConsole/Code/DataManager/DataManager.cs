@@ -23,6 +23,7 @@ namespace MediaServerManagement
             /// </summary>
             Text
         }
+        
         #endregion
 
         #region Attributes
@@ -41,6 +42,11 @@ namespace MediaServerManagement
         /// </summary>
         private Dictionary<StorageEngine, DataMangerStorageEngine> storageEngines;
 
+        /// <summary>
+        /// list of jobs to be executed
+        /// </summary>
+        private readonly List<Job> jobs;
+
         #endregion
 
         #region Constructor
@@ -51,23 +57,18 @@ namespace MediaServerManagement
         /// </summary>
         public DataManager()
         {
-            string plainText;
-            string cypherText;
-
             #region StorageEngine
+
             this.storageEngines = new Dictionary<StorageEngine, DataMangerStorageEngine>();
             this.storageEngines.Add(StorageEngine.Text, new DataMangerStorageEngineText());
             this.primaryStorageEngine = StorageEngine.Text;
 
-            plainText = "abc";
-            cypherText = plainText.Encrypt();
-            try
-            {
-                plainText = cypherText.Decrypt();
-            }
-            catch {
-                plainText = "";
-            }
+            #endregion
+
+            # region Jobs
+
+            this.jobs = new List<Job>();
+
             #endregion
         }
 
@@ -88,6 +89,19 @@ namespace MediaServerManagement
             set
             {
                 this.primaryStorageEngine = value;
+            }
+        }
+
+
+        /// <summary>
+        /// Gets list of jobs to be executed<br/>
+        /// </summary>
+        /// <returns>list of jobs</returns>
+        public List<Job> Jobs
+        {
+            get
+            {
+                return this.jobs;
             }
         }
 

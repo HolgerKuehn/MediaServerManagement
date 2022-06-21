@@ -1,5 +1,5 @@
 # MediaServerManagement
-This project has been created automate different periodeic task on a Windows Media Server.
+This project has been created to automate different periodic tasks on a Windows Server installation used primarily as a media server.
 
 This tool facilitates the following functions
 

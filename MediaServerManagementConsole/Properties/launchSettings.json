@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "MediaServerManagement": {
+      "commandName": "Project",
+      "commandLineArgs": "setting passwordsafe type KeePass"
+    }
+  }
+}
