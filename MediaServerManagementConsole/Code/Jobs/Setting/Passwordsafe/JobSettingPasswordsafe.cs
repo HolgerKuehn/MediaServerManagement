@@ -1,72 +1,38 @@
-﻿/// <copyright file="DataManager.cs" company="dachs.blog">
+﻿/// <copyright file="JobSettingPasswordsafe.cs" company="dachs.blog">
 /// Copyright (c) 2014 - 2022 Holger Kühn. All rights reserved.
 /// </copyright>
-/// <summary>
-/// Namespace used for all MediaServerManangement components
-/// </summary>
 namespace MediaServerManagement
 {
-    /// <summary>
-    /// provides management of program data
-    /// </summary>
-    internal abstract class Job
+    internal abstract class JobSettingPasswordsafe : JobSetting
     {
-        #region Attributes
-
-        /// <summary>
-        /// provides access to stored data
-        /// </summary>
-        private readonly DataManager dataManager;
-
-        #endregion
-
         #region Constructor
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Job"/> class.
+        /// Initializes a new instance of the <see cref="JobSettingPasswordsafe"/> class.
         /// initializes configuration with last known configuration
         /// </summary>
-        public Job(DataManager dataManager)
+        public JobSettingPasswordsafe(DataManager dataManager)
+            : base(dataManager)
         {
-            #region DataManager
-
-            this.dataManager = dataManager;
-
-            #endregion
-        }
-
-        #endregion
-
-        #region Properties
-
-        /// <summary>
-        /// Gets the dataManager to access stored data<br/>
-        /// </summary>
-        /// <returns>current DataManager</returns>
-        public DataManager DataManager
-        {
-            get
-            {
-                return this.dataManager;
-            }
         }
 
         #endregion
 
         #region Methods
 
-        #region
-
         /// <summary>
         /// executes Job
         /// </summary>
         /// <returns>error code of execution</returns>
-        public abstract int ExecuteJob();
+        public override int ExecuteJob()
+        {
 
-        #endregion
+            return 0;
+        }
+
         #region static Factories
 
-        static public Job JobFactory(DataManager dataManager, List<string> commandLineArguments)
+        static new public Job JobFactory(DataManager dataManager, List<string> commandLineArguments)
         {
             #region declare variables
 
@@ -100,15 +66,15 @@ namespace MediaServerManagement
             // send command to appropriate factory
             switch (commandLineArgument)
             {
-                case "setting":
-                    job = JobSetting.JobFactory(dataManager, commandLineArguments);
+                case "type":
+                    job = new JobSettingPasswordsafeType(dataManager, commandLineArgument);
                     break;
 
                 default:
                     job = new JobUnknown(dataManager);
-                    ((JobUnknown) job).PossibleCommands = new List<string>();
+                    ((JobUnknown)job).PossibleCommands = new List<string>();
                     ((JobUnknown)job).PossibleCommands.Add(commandLineArgument);
-                    ((JobUnknown)job).PossibleCommands.Add("Setting");
+                    ((JobUnknown)job).PossibleCommands.Add("Setting Passwordsafe");
                     break;
             }
 
@@ -118,7 +84,6 @@ namespace MediaServerManagement
         }
 
         #endregion
-
         #endregion
     }
 }

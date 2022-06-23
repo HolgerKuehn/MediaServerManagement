@@ -23,10 +23,15 @@ namespace MediaServerManagement
             /// </summary>
             Text
         }
-        
+
         #endregion
 
         #region Attributes
+
+        /// <summary>
+        /// stores configured passwordsafe type
+        /// </summary>
+        private string passwordsafeType;
 
         /// <summary>
         /// defines, what storage engine is used
@@ -76,6 +81,21 @@ namespace MediaServerManagement
 
         #region Properties
 
+        public string PasswordsafeType
+        {
+            get
+            {
+                return this.passwordsafeType;
+            }
+
+            set
+            {
+                this.passwordsafeType = value;
+            }
+        }
+
+
+
         /// <summary>
         /// Gets and sets type of storage engine used<br/>
         /// </summary>
@@ -107,5 +127,33 @@ namespace MediaServerManagement
 
         #endregion
 
+        #region Methods
+
+        /// <summary>
+        /// executes Job
+        /// writes Message on Console
+        /// </summary>
+        /// <returns>error code of execution</returns>
+        public int ExecuteJobs()
+        {
+            // declare local variables
+            int errorcode;
+
+            // initialize value
+            errorcode = 0;
+
+            // execute jobs
+            foreach (Job job in this.Jobs)
+            {
+                errorcode = job.ExecuteJob();
+
+                if (errorcode != 0)
+                    break;
+            }
+
+            return errorcode;
+        }
+
+        #endregion
     }
 }

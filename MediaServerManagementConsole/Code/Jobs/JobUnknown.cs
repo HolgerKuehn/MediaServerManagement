@@ -8,6 +8,12 @@ namespace MediaServerManagement
 {
     internal class JobUnknown : Job
     {
+        #region Attributes
+
+        private List<string> possibleCommands;
+
+        #endregion
+
         #region Constructor
 
         /// <summary>
@@ -21,6 +27,27 @@ namespace MediaServerManagement
 
         #endregion
 
+        #region Properties
+
+        /// <summary>
+        /// Gets and sets list of possible commands<br/>
+        /// </summary>
+        /// <returns>list of possible commands</returns>
+        public List<string> PossibleCommands
+        {
+            get
+            {
+                return this.possibleCommands;
+            }
+
+            set
+            {
+                this.possibleCommands = value;
+            }
+        }
+
+        #endregion
+
         #region Methods
 
         /// <summary>
@@ -30,8 +57,21 @@ namespace MediaServerManagement
         /// <returns>error code of execution</returns>
         public override int ExecuteJob()
         {
-            Console.WriteLine("Command unknown");
+            // declare variables
+            string givenCommand;
 
+            // set variables
+            givenCommand = PossibleCommands.First();
+            PossibleCommands.RemoveAt(0);
+
+            Console.WriteLine("command \"" + givenCommand + "\" unknown");
+            Console.WriteLine("use one of the following commands instead");
+            
+            foreach (string possibleCommand in PossibleCommands)
+            {
+                Console.WriteLine("  " + possibleCommand);
+            };
+            
             return 1;
         }
 

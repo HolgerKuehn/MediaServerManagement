@@ -24,12 +24,12 @@ namespace MediaServerManagement
             DataManager dataManager = new DataManager();
             List<string> commandLineArguments = new List<string>();
 
-            // convert array to List and remove the first argument (program)
+            // convert array to List
             commandLineArguments = args.ToList<string>();
-            commandLineArguments.RemoveAt(0);
 
             // read command line arguments
             dataManager.Jobs.Add(Job.JobFactory(dataManager, commandLineArguments));
+            dataManager.ExecuteJobs();
         }
     }
 }

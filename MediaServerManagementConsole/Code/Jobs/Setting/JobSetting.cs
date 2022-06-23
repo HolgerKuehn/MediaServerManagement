@@ -6,7 +6,7 @@
 /// </summary>
 namespace MediaServerManagement
 {
-    internal class JobSetting : Job
+    internal abstract class JobSetting : Job
     {
         #region Constructor
 
@@ -59,12 +59,15 @@ namespace MediaServerManagement
             // send command to appropriate factory
             switch (commandLineArgument)
             {
-                case "setting":
-                    job = JobSetting.JobFactory(dataManager, commandLineArguments);
+                case "passwordsafe":
+                    job = JobSettingPasswordsafe.JobFactory(dataManager, commandLineArguments);
                     break;
 
                 default:
                     job = new JobUnknown(dataManager);
+                    ((JobUnknown)job).PossibleCommands = new List<string>();
+                    ((JobUnknown)job).PossibleCommands.Add(commandLineArgument);
+                    ((JobUnknown)job).PossibleCommands.Add("Setting Passwordsafe");
                     break;
             }
 

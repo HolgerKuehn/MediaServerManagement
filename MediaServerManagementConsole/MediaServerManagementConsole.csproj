@@ -13,4 +13,8 @@
     <RootNamespace>MediaServerManagement</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Program.cs" />
+  </ItemGroup>
+
 </Project>

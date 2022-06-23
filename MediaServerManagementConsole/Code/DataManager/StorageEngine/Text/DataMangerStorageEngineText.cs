@@ -17,7 +17,7 @@ namespace MediaServerManagement
         /// <summary>
         /// base path to Programdata-directory used to store data
         /// </summary>
-        private string baseProgramDataPath;
+        private readonly string baseProgramDataPath;
 
         #endregion
 
@@ -40,19 +40,14 @@ namespace MediaServerManagement
         #region Properties
 
         /// <summary>
-        /// Gets and sets type of storage engine used<br/>
+        /// Gets base path for storage in text files<br/>
         /// </summary>
-        /// <returns>type of storage engine used</returns>
+        /// <returns>path to store text files</returns>
         public string BaseProgramDataPath
         {
             get
             {
                 return this.baseProgramDataPath;
-            }
-
-            set
-            {
-                this.baseProgramDataPath = value;
             }
         }
 
